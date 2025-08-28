@@ -1,0 +1,238 @@
+PUT http://localhost:5000/api/goals/68a70a85db0897112f3849c6 HTTP/1.1
+content-type: application/json
+
+{
+    "text":"oh no how about this?"
+}
+
+###
+
+POST http://localhost:5000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Jane Doe",
+    "email": "jane@doe.com",
+    "password": "janedoecom"
+}
+
+### 
+POST http://localhost:5000/api/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "jane@doe.com",
+    "password": "janedoecom"
+}
+
+###
+
+GET http://localhost:5000/api/users/me HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YTc0NTdkNTYxYWRjZjg2ZDIyN2E5NiIsImlhdCI6MTc1NTc5Mjc2OCwiZXhwIjoxNzU4Mzg0NzY4fQ.t74xagfyUcVf7lstsyixl_K6Q5SY4FJd8aOsbRK6kgI
+
+###
+
+POST http://localhost:5000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "James koo",
+    "email": "james@koo.com",
+    "password": "jameskoocom"
+} 
+
+###
+POST http://localhost:5000/api/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "james@koo.com",
+    "password": "jameskoocom"
+}
+
+
+### 
+POST http://localhost:5000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Kim test",
+    "email": "Kim@test.com",
+    "password": "Kimtestcom"
+} 
+
+### 
+
+POST http://localhost:5000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Kim test",
+    "password": "Kimtestcom"
+} 
+
+### 
+POST http://localhost:5000/api/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "Kim@test.com",
+    "password": "Kimtestcom1"
+}
+
+### 
+GET http://localhost:5000/api/users/me HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YTc0YzJiYWNjYmQxMDMxNGY0NjYyMSIsImlhdCI6MTc1NTc5NDQ3NSwiZXhwIjoxNzU4Mzg2NDc1fQ.NudrgxUWpVb6zjJ_Rqji7SHK_Uu8sB7XCezOWOGrQxo
+
+### 
+POST http://localhost:5000/api/goals HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YTc0YzJiYWNjYmQxMDMxNGY0NjYyMSIsImlhdCI6MTc1NTc5NDQ3NSwiZXhwIjoxNzU4Mzg2NDc1fQ.NudrgxUWpVb6zjJ_Rqji7SHK_Uu8sB7XCezOWOGrQxo
+
+{
+    "text": "kim's second goal -HAHA"
+}
+
+### 
+GET http://localhost:5000/api/goals HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YTc0YzJiYWNjYmQxMDMxNGY0NjYyMSIsImlhdCI6MTc1NTc5NDQ3NSwiZXhwIjoxNzU4Mzg2NDc1fQ.NudrgxUWpVb6zjJ_Rqji7SHK_Uu8sB7XCezOWOGrQxo
+
+###
+
+PUT  http://localhost:5000/api/goals/68a75c926a7a43512b221ce4 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YTc0YzJiYWNjYmQxMDMxNGY0NjYyMSIsImlhdCI6MTc1NTc5NDQ3NSwiZXhwIjoxNzU4Mzg2NDc1fQ.NudrgxUWpVb6zjJ_Rqji7SHK_Uu8sB7XCezOWOGrQxo
+
+{
+    "text": "Goal updated good bye"
+}
+
+
+###
+DELETE  http://localhost:5000/api/goals/68a75ca0ccbc716a47b193ba HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YTc0YzJiYWNjYmQxMDMxNGY0NjYyMSIsImlhdCI6MTc1NTc5NDQ3NSwiZXhwIjoxNzU4Mzg2NDc1fQ.NudrgxUWpVb6zjJ_Rqji7SHK_Uu8sB7XCezOWOGrQxo
+
+
+###
+POST http://localhost:5000/api/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "user1@use.com",
+    "password": "user1user1"
+}
+
+### user2 auth login test 
+POST http://localhost:5000/api/users/auth HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "user2@user.main.com",
+    "password": "user2user2"
+}
+
+### user2 get profile test 
+PUT http://localhost:5000/api/users/profile HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "user2@user.main.com"
+}
+
+### user2 logout
+POST http://localhost:5000/api/users/logout HTTP/1.1
+
+### user2 get profile without cookie-token
+GET http://localhost:5000/api/users/profile HTTP/1.1
+
+
+### user2 get profile with cookie-token
+GET http://localhost:5000/api/users/profile HTTP/1.1
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE4YTQwNzUyMjZjMmY0ODJlMjI3MjciLCJpYXQiOjE3NTYwNjM4MTIsImV4cCI6MTc1ODY1NTgxMn0.xuGwleEYY3wolDPUlnXfU8OljxrGh60gijGC7EW01Po
+
+### use2 set a gola with cookie-token
+POST http://localhost:5000/api/goals HTTP/1.1
+Content-Type: application/json
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE4YTQwNzUyMjZjMmY0ODJlMjI3MjciLCJpYXQiOjE3NTYwNjM4MTIsImV4cCI6MTc1ODY1NTgxMn0.xuGwleEYY3wolDPUlnXfU8OljxrGh60gijGC7EW01Po
+
+{
+    "text": "user2's new post with cookie-jwt"
+}
+
+### user2 get goals (logged in state)
+GET http://localhost:5000/api/goals HTTP/1.1
+
+
+### user2 delete a goal with id (logged in state)
+DELETE  http://localhost:5000/api/goals/68abee7234ace96dc17cd513 HTTP/1.1
+
+
+###
+POST http://localhost:5000/api/goals HTTP/1.1
+Content-Type: application/json
+
+{
+    "text": "adding new goal for creating test"
+}
+
+
+### get user4
+GET http://localhost:5000/api/goals HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YTlhMzUzODVjYTk0YjYwZWRjYzRhYSIsImlhdCI6MTc1NTk3MjYyMiwiZXhwIjoxNzU4NTY0NjIyfQ.j3kCh7PR5LXv70SD-sXcXXz22RXGLgwudI3YpQ1b0dY
+
+###
+POST http://localhost:5000/api/users/logout HTTP/1.1
+
+
+###
+POST http://localhost:5000/api/goals HTTP/1.1
+Content-Type: application/json
+
+{
+    "text": "user3's new post halo"
+}
+
+
+### 
+GET http://localhost:5000/api/goals HTTP/1.1
+
+
+
+
+
+### for MERN authentiction
+POST http://localhost:5000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "user6  ",
+    "email": "user6@user.com",
+    "password": "user6"
+}
+
+### 
+POST http://localhost:5000/api/users/auth HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "user6@user.com",
+    "password": "user6"
+}
+
+### 
+PUT http://localhost:5000/api/users/profile HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "user6@newuser.com",
+    "password": "user6"
+}
+
+### 
+GET http://localhost:5000/api/users/profile HTTP/1.1
+
+### 
+POST http://localhost:5000/api/users/logout HTTP/1.1
+
+### 
+GET http://localhost:5000/api/users/profile HTTP/1.1
