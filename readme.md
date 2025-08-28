@@ -110,6 +110,15 @@ NOTE APP
 
 ### Install 
 
+.env
+``` 
+NODE_ENV= development
+PORT= 5000
+MONGO_URI= yourmongodbconnectionstringhere
+JWT_SECRET= xxxxxxx
+
+```
+
 ```
 npm install
 cd frontend
