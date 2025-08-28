@@ -93,7 +93,7 @@ NOTE APP
                 │       ├── RegisterScreen.jsx
                 │       ├── NotesScreen.jsx
                 │       └── SingleNoteScreen.jsx
-                └── sllices
+                └── slices
                         ├── apiSlice.js   
                         ├── authSlice.js
                         ├── notesApiSlice.js
