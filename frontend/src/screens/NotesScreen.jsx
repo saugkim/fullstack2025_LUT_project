@@ -3,9 +3,11 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useGetNotesQuery, useCreateNoteMutation } from '../slices/notesApiSlice.js';
+import { useGetNotesQuery, useCreateNoteMutation, useUpdateNoteMutation } from '../slices/notesApiSlice.js';
 import Loader from '../components/Loader';
 import { addNoteState } from '../slices/notesSlice.js';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import Note from '../components/Note.jsx'
 
 const NotesScreen = () => {
 
@@ -21,13 +23,13 @@ const NotesScreen = () => {
 
   const { data: items=[], isLoading } = useGetNotesQuery({});
   const [ createNote, {} ] = useCreateNoteMutation();
+  const [ updateNote, {} ] = useUpdateNoteMutation();
+
 
   useEffect(() => {    
     if (!userInfo) {
       navigate('/login')
     }
-
-    console.log(notes.length, items.length);
 
   }, [dispatch, navigate, userInfo, notes])
 
@@ -45,40 +47,80 @@ const NotesScreen = () => {
       console.log(res);
   
       if (res.data) {
-        toast.success(`Goal updated successfully`);
+        toast.success(`Note updated successfully`);
         dispatch(addNoteState(res.data));
       } else {
-        toast.error('something wrong');
+        toast.error('something went wrong');
       }
     } catch (e) {
       toast.error(err?.data?.message || err.error);
     }
     e.target.reset();
   };
+
+  const toggleIsFavorite = async (item) => {
+
+    const inputData = {
+      id: item._id, 
+      content: { text : item.text, isImportant: !item.isImportant },
+    }
+
+    try {
+      const res = await updateNote(inputData)
+                        .unwrap();
+      console.log(res);
+      toast.success('Note updated successfully');
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+
+//    items.map((x) => (x._id === item._id) ? {...x, isImportant:!x.isImportant } : x);
+  }
+
   
   return ( 
     <div>  
       <Container className='d-flex p-1 justify-content-center'>  
-         <Card className='d-flex p-2 align-items-center hero-card bg-light w-100'>  
+        <Card className='d-flex p-2 align-items-center hero-card bg-light w-100'>  
           
-          <h5 className='text-center px-3 m-2 mb-3'> My current notes ({items.length})</h5>  
-          {items.length === 0 ? <p>no notes, please create new ones</p> : <></> }
-      
+          <h5 className='text-center px-3 m-2 mb-3'> Current notes ({items.length}) </h5> 
+                        
+          {items.length === 0 ? <p>no notes, create new ones!!</p> : <></> }
+
           <div className='w-100 p-2'>
             <ul className="list-group list-group-items">
-              {items.map((item) => 
+              {items.map((i) => 
                 <li 
                   className='list-group-item' 
-                  key={item._id} 
-                  onDoubleClick={(e) => {
-                    e.preventDefault();
-                    navigate(`/update`, { state: { _id: item._id, _text: item.text } }); 
-                  }}>
-                  {item.text.length > 35 ? `${item.text.substring(0, 35)} ...` : item.text}  
+                  key={i._id} 
+                >
+                  <Note 
+                    item = {i}
+                    onToggle={() => toggleIsFavorite(i)} />
                 </li> 
               )} 
-            </ul>
-          </div>
+            </ul> 
+          </div>   
+
+          {/* <div>
+            {items.map((item) => 
+              <li className='list-group-item' key={item._id} >
+                <div className='d-flex align-items-center justify-content-between pr-2'
+                     onDoubleClick={(e) => {
+                       e.preventDefault();
+                       navigate(`/update`, { state: { _id: item._id, _text: item.text } }); 
+                     }} >
+                  <h6>{item.text.length > 40 ? `${item.text.substring(0, 40)} ...` : item.text}</h6> 
+                  { item.isImportant ?
+                    <i className='bi bi-star-fill' style= { {color: 'green'} } 
+                       onClick={() => {toggleItmeIsFavorite(item) }} />
+                    :
+                    <i className='bi bi-star' style= { {color: 'green'} } 
+                       onClick={() => { toggleItmeIsFavorite(item) }} />}
+                </div>
+              </li>
+            )}  
+         </div> */}
 
         </Card>
       </Container>
@@ -88,8 +130,8 @@ const NotesScreen = () => {
           <Form className= 'form w-100' onSubmit={submitHandler} >
             
             <div className='d-flex justify-content-between'>   
-              <h5 className='text-center px-3'> Add Note </h5>
-              <Button type='submit' variant='outline-secondary' className='mx-3'>
+              <h5 className='text-center px-3'> Add new </h5>
+              <Button type='submit' variant='outline-primary' className='mx-3'>
                 CREATE
               </Button>
             </div>
