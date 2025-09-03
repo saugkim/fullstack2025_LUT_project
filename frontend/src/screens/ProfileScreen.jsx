@@ -88,9 +88,15 @@ const ProfileScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary' className='mt-3'>
-          Update
-        </Button>
+        <div className='d-flex justify-content-between p-2'> 
+          <Button type='submit' variant='primary' className='m-3'>
+            Update
+          </Button>
+
+          <Button variant='secondary' className='m-3' href='/notes'>
+            Cancel
+          </Button>
+        </div>
 
         {isLoading && <Loader />}
       </Form>

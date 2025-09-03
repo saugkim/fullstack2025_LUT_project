@@ -79,12 +79,12 @@ const SingleNoteScreen = () => {
         <Card className='p-3 d-flex flex-column align-items-center hero-card bg-light w-75'>
           
           <Form onSubmit={submitHandler} className='w-100'>
-            <div className='d-flex justify-content-between'>   
-              <Button type='submit' variant='primary' className='mt-3 mx-3'>
+            <div className='d-flex justify-content-between p-3' >   
+              <Button type='submit' variant='primary' className='mx-2'>
                 UPDATE
               </Button>
-              <Button variant='secondary' className='mt-3 mx-3' href='/notes'>
-                BACK TO LIST
+              <Button variant='secondary' className='mx-2' href='/notes'>
+                TO LIST
               </Button>
             </div>
             
@@ -98,7 +98,7 @@ const SingleNoteScreen = () => {
           </Form>
         
           <Button variant='outline-danger mt-2' onClick={deleteThisItem} href='/notes'>
-              DELETE GOAL
+              DELETE NOTE
           </Button>
 
         </Card>

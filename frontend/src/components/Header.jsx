@@ -30,24 +30,27 @@ const Header = () => {
   return (
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
-        <Container>
+        <Container >
           <LinkContainer to='/'>
             <Navbar.Brand>MY NOTES</Navbar.Brand>
           </LinkContainer>
+
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ms-auto'>
               {userInfo ? (
-                <>
+                <div style={{width: '100px'}}>
                   <NavDropdown title={userInfo.name} id='username'>
                     <LinkContainer to='/profile'>
-                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                      <NavDropdown.Item >
+                        Profile
+                      </NavDropdown.Item>
                     </LinkContainer>
-                    <NavDropdown.Item onClick={logoutHandler}>
+                    <NavDropdown.Item onClick={logoutHandler} >
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>
-                </>
+                </div>
               ) : (
                 <>
                   <LinkContainer to='/login'>

@@ -9,9 +9,10 @@ const Intro = () => {
     <div className=' py-5'>
       <Container className='d-flex justify-content-center'>
         <Card className='p-5 d-flex flex-column align-items-center hero-card bg-light w-75'>
-          <h1 className='text-center mb-4'>MY NOTES</h1>
           <p className='text-center mb-4'>
-            This Note-app is created on top of the <a href='https://www.traversymedia.com/blog/mern-crash-course-part-1'>MERN authentication</a>.
+            This app is created on top of the <a href='https://www.traversymedia.com/blog/mern-crash-course-part-1'>MERN authentication</a> project.
+            <br></br>
+            <br></br>
             This app uses Redux Toolkit & React Bootstrap, Vite and Express & MongoDB. 
           </p>
 

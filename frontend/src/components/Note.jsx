@@ -1,15 +1,12 @@
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const Note = ( {item, onToggle} ) => {
+const Note = ( {item, onToggle, onDoubleClick} ) => {
 
     return (
       <div 
         className='d-flex align-items-center justify-content-between pr-2'
-        onDoubleClick={(e) => {
-          e.preventDefault();
-          navigate(`/update`, { state: { _id: item._id, _text: item.text } }); 
-        }}>
+        onDoubleClick={()=> onDoubleClick(item)} >
 
         <h6>{item.text.length > 40 ? `${item.text.substring(0, 40)} ...` : item.text}</h6> 
 
