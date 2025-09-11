@@ -1,4 +1,4 @@
-import { Container, Card, Button, Form} from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,8 @@ import Loader from '../components/Loader';
 import { addNoteState } from '../slices/notesSlice.js';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Note from '../components/Note.jsx'
+import NoteContainer from '../components/NoteContainer.jsx';
+
 
 const NotesScreen = () => {
 
@@ -32,7 +34,7 @@ const NotesScreen = () => {
       navigate('/login')
     }
 
-  }, [dispatch, navigate, userInfo, notes])
+  }, [navigate, userInfo])
 
 
   //@create new note submit handler
@@ -49,7 +51,7 @@ const NotesScreen = () => {
       console.log(res);
   
       if (res.data) {
-        toast.success(`Note updated successfully`);
+        toast.success(`Note created/added successfully`);
         dispatch(addNoteState(res.data));
       } else {
         toast.error('something went wrong');
@@ -61,8 +63,8 @@ const NotesScreen = () => {
   };
 
 
-  //@update note to mark as favorite 
-  const toggleIsFavorite = async (item) => {
+  //@desc update note to mark as favorite 
+  const toggleIsImportant = async (item) => {
 
     const inputData = {
       id: item._id, 
@@ -79,95 +81,92 @@ const NotesScreen = () => {
     }
   }
 
-  //@double click go to single note screen
+  //@desc double click go to single note screen
   const navigateToSingleNote = (item) => {
-    navigate(`/update`, { state: { _id: item._id, _text: item.text } }); 
+    navigate(`/note`, { state: { _id: item._id, _text: item.text }} );     
   }
   
   
   return ( 
-    <div>  
-      <Container className='d-flex p-1 mt-3 justify-content-center'>  
-        <Card className='d-flex p-2 align-items-center hero-card bg-light w-100'>  
-          
-          <h5 className='text-center m-2'> Current notes ({items.length})</h5> 
+    <>   
+      <NoteContainer> 
+        <h5 className='text-center m-2'> Current notes ({items.length})</h5> 
                         
-          {items.length === 0 ? 
-            <p className='m-2'>no notes, create new ones!!</p> : 
-            <p className='m-2'>double-click a note below to edit</p>}
-        
-          {/* <Button 
-            onClick={toggleSorted} 
-            variant='outline-primary'
-            style={{color: 'green', border: 'none', backgroundColor: 'white'}} >
-              { sorted ? 'ALL NOTES' : 'FAVORITE NOTES' }
-          </Button> */}
+        {items.length === 0 ? 
+          (<p className='m-2'>no notes, create new ones!!</p>)
+          :
+          (<div className='d-flex justify-content-between align-items-center w-100 px-2'>
+            <p className='m-2'>double-click a note below to edit</p>
+            <Button 
+              variant='outline'
+              style={{ color: 'green', border: 'solid' }}
+              onClick={() => sorted ? setSorted(false) : setSorted(true)}
+            > 
+              { sorted ? 
+                <span>SHOW ALL</span> 
+                :
+                <> 
+                  <span>SHOW </span>
+                  <span><i className='bi bi-star-fill' style={ {color: 'green'} }/></span>
+                </>
+              } 
+            </Button>
+          </div>)
+        }
 
-          <div className='w-100 p-2'>
-            <ul className="list-group list-group-items">
-              {items.map((i) => 
+        <div className='w-100 p-2 mt-2'>
+          <ul className="list-group list-group-items">
+            {sorted ?   
+              (items.filter((i) => i.isImportant === true).map((i) => 
                 <li 
                   className='list-group-item' 
                   key={i._id} >
 
                   <Note 
                     item = {i}
-                    onToggle={() => toggleIsFavorite(i)}
+                    onToggle={() => toggleIsImportant(i)}
                     onDoubleClick ={() => navigateToSingleNote(i)} />
                 </li> 
-              )}
-            </ul> 
-          </div>   
+              ))
+              :
+              (items.map((i) => 
+                <li 
+                  className='list-group-item' 
+                  key={i._id} >
 
-          {/* <div>
-            {items.map((item) => 
-              <li className='list-group-item' key={item._id} >
-                <div className='d-flex align-items-center justify-content-between pr-2'
-                     onDoubleClick={(e) => {
-                       e.preventDefault();
-                       navigate(`/update`, { state: { _id: item._id, _text: item.text } }); 
-                     }} >
-                  <h6>{item.text.length > 40 ? `${item.text.substring(0, 40)} ...` : item.text}</h6> 
-                  { item.isImportant ?
-                    <i className='bi bi-star-fill' style= { {color: 'green'} } 
-                       onClick={() => {toggleItmeIsFavorite(item) }} />
-                    :
-                    <i className='bi bi-star' style= { {color: 'green'} } 
-                       onClick={() => { toggleItmeIsFavorite(item) }} />}
-                </div>
-              </li>
-            )}  
-         </div> */}
+                  <Note 
+                    item = {i}
+                    onToggle={() => toggleIsImportant(i)}
+                    onDoubleClick ={() => navigateToSingleNote(i)} />
+                </li> 
+              ))
+            }
+          </ul> 
+        </div>   
+      </NoteContainer>
 
-        </Card>
-      </Container>
-      
-      <Container className='d-flex p-1 mt-5 justify-content-center'>
-        <Card className='p-3 d-flex align-items-center hero-card bg-light w-100'>      
-          <Form className= 'form w-100' onSubmit={submitHandler} >
-            
-            <div className='d-flex justify-content-between align-items-center px-3 mb-1'>   
-              <h5>Add new</h5>
-              <Button type='submit' variant='outline-primary'>
+      <NoteContainer>        
+        <Form className= 'form w-100' onSubmit={submitHandler} >
+          <div className='d-flex justify-content-between align-items-center px-3 my-1'>   
+            <h6>add new</h6>
+            <Button type='submit' variant='outline-primary'>
                 CREATE
-              </Button>
-            </div>
+            </Button>
+          </div>
             
-            <div className='d-flex justify-content-center'>   
-              <textarea 
-                  className="form-control m-2" rows="5" 
-                  name='mynote'
-                  type='textarea'
-                  placeholder='Write new note here...'
-              />
-            </div>
-
-          </Form>
-        </Card>
-      </Container>
+          <div className='d-flex justify-content-center p-2 m-1'>   
+            <textarea 
+              className="form-control" rows="5" 
+              name='mynote'
+              type='textarea'
+              placeholder='Write new note here...'
+            />
+          </div>
+        </Form>
+      </NoteContainer>
 
       {isLoading && <Loader />}
-    </div>
+    </>
   );
 };
 

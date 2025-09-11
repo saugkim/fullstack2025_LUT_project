@@ -32,7 +32,7 @@ const router = createBrowserRouter(
 
       <Route path='' element={<PrivateRoute />}>
         <Route path='/profile' element={<ProfileScreen />} />
-        <Route path='/update' element={<SingleNoteScreen /> } />
+        <Route path='/note' element={<SingleNoteScreen /> } />
         <Route path='/notes' element={<NotesScreen />} />
       </Route>
     </Route>

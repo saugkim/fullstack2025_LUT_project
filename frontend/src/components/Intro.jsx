@@ -8,11 +8,13 @@ const Intro = () => {
   return (
     <div className=' py-5'>
       <Container className='d-flex justify-content-center'>
-        <Card className='p-5 d-flex flex-column align-items-center hero-card bg-light w-75'>
+        <Card className='p-5 d-flex flex-column align-items-center bg-light w-75'>
           <p className='text-center mb-4'>
-            This app is created on top of the <a href='https://www.traversymedia.com/blog/mern-crash-course-part-1'>MERN authentication</a> project.
+            This application is implemented on top of 
             <br></br>
+            the <a href='https://www.traversymedia.com/blog/mern-crash-course-part-1'>MERN authentication</a> project.
             <br></br>
+            <p></p>
             This app uses Redux Toolkit & React Bootstrap, Vite and Express & MongoDB. 
           </p>
 

@@ -1,4 +1,3 @@
-
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const Note = ( {item, onToggle, onDoubleClick} ) => {
@@ -8,7 +7,7 @@ const Note = ( {item, onToggle, onDoubleClick} ) => {
         className='d-flex align-items-center justify-content-between pr-2'
         onDoubleClick={()=> onDoubleClick(item)} >
 
-        <h6>{item.text.length > 40 ? `${item.text.substring(0, 40)} ...` : item.text}</h6> 
+        <h6>{item.text.length > 50 ? `${item.text.substring(0, 50)}...` : item.text}</h6> 
 
         <i 
           className={`bi bi-star${item.isImportant ? '-fill' : '' }`} 
