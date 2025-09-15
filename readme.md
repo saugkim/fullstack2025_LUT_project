@@ -4,9 +4,9 @@ My project is built on top of the Brad's MERN authentiation starter project belo
 My app includes the following in addition to the Brad's MERN authentication base work. 
 
  - React fronted to Create-Read-Update-Delete note for logged-in user
- - two different views for note collection 
-        - route for simple list of notes (all notes, one line each note) and create new one
-        - route for detail of the note (single note) - edit, update & delete    
+ - two different views for note collection  
+        - route for simple list of notes (all notes, one line each note) and create new one  
+        - route for detail of the note (single note) - edit, update & delete     
 
 
 # MERN Authentication Starter
