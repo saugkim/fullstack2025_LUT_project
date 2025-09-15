@@ -137,12 +137,14 @@ npm run dev
 npm run server
 ```
 
-## Build & Deploy
-
-- Create a PayPal account and obtain your `Client ID` - [PayPal Developer](https://developer.paypal.com/)
+## Build 
 
 ```
-# Create frontend prod build
+# Create frontend build
 cd frontend
 npm run build
+
+# run locally
+cd ..
+npm run server (==> localhost:5000) 
 ```
