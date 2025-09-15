@@ -105,14 +105,13 @@ NOTE APP
 ```    
 
 
-## Required MongoDB account
+### Required MongoDB account
 
 - Create a MongoDB database and obtain your `MongoDB URI` [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
 
 
-### Install 
+### setup .env
 
-.env
 ``` 
 NODE_ENV= development
 PORT= 5000
@@ -120,6 +119,8 @@ MONGO_URI= yourmongodbconnectionstringhere
 JWT_SECRET= xxxxxxx
 
 ```
+
+### Install 
 
 ```
 npm install
