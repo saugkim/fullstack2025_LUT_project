@@ -86,6 +86,7 @@ NOTE APP
                 │       ├── Loader.jsx
                 │       ├── Intro.jsx
                 │       ├── Note.jsx
+                │       ├── NoteContainer.jsx
                 │       └── PrivateRoute.js
                 ├── screens
                 │       ├── HomeScreen.jsx   
