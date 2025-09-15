@@ -1,11 +1,11 @@
 # Adding Editing/updating deleting notes and fetching nodes by logged-in user
 
 My project is built on top of the Brad's MERN authentiation starter project below.
-My app includes the following in addition to the Brad's MERN authentication base work. 
+My app includes the followings in addition to the Brad's MERN authentication base work. 
 
- - React fronted to Create-Read-Update-Delete note for logged-in user
+ - React frontend to Create-Read-Update-Delete note for logged-in user
  - two different views for note collection  
-        - route for simple list of notes (all notes, one line each note) and create new one  
+        - route for simple list of notes (all notes, one line each note) and create new note  
         - route for detail of the note (single note) - edit, update & delete     
 
 
